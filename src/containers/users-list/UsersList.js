@@ -1,12 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUsers } from "../../store/actions/usersAction";
-
+import { bindActionCreators } from "redux";
+import * as usersAction from "../../store/actions/usersAction";
 class UsersList extends React.Component {
   componentDidMount() {
-    console.log(this.props.users, "before");
     this.props.getUsers();
-    console.log(this.props.users, "after");
   }
 
   renderUsers() {
@@ -21,10 +19,14 @@ class UsersList extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state.users, "mapStateToProps");
   return { users: state.users };
 };
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(usersAction, dispatch);
+
 export default connect(
   mapStateToProps,
-  { getUsers }
+  mapDispatchToProps
 )(UsersList);
