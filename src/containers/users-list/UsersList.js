@@ -6,7 +6,7 @@ class UsersList extends React.Component {
   componentDidMount() {
     console.log(this.props.users, "before");
     this.props.getUsers();
-    console.log(this.props.users);
+    console.log(this.props.users, "after");
   }
 
   renderUsers() {
