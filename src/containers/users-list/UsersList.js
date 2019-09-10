@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as usersAction from "../../store/actions/usersAction";
 
-const UsersList = ({ getUsers, users }) => {
+export function UsersList({ getUsers, users }) {
+  // add named export for testing purpose
   useEffect(() => {
     getUsers();
   }, []);
@@ -13,7 +14,7 @@ const UsersList = ({ getUsers, users }) => {
   };
 
   return <ul>{renderList(users)}</ul>;
-};
+}
 
 const mapStateToProps = state => {
   console.log(state.users, "mapStateToProps");
@@ -22,7 +23,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(usersAction, dispatch);
-// pourquoi tout importer ? Je pense que c'est mieux de déclarer l'action spécifique getUsers car c'est la seule qui va être utilisée ici
 
 export default connect(
   mapStateToProps,
