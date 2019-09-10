@@ -8,9 +8,11 @@ const UsersList = ({ getUsers, users }) => {
     getUsers();
   }, []);
 
-  return users.map(user => {
-    return <li key={user.id}>{user.name}</li>;
-  });
+  const renderList = users => {
+    return users.map(user => <li key={user.id}>{user.name}</li>);
+  };
+
+  return <ul>{renderList(users)}</ul>;
 };
 
 const mapStateToProps = state => {
