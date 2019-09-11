@@ -1,9 +1,12 @@
 import { UsersList } from "./UsersList";
 import React from "react";
-import ReactDOM from "react-dom";
+import Enzyme, { shallow } from "enzyme";
+import EnzymeAdapter from "enzyme-adapter-react-16";
 
-it("renders a lists of user names ", () => {
-  const container = document.createElement("div");
-  ReactDOM.render(<UsersList users={[{ name: "Leanne Graham" }]} />, container);
-  expect(container.textContent).toMatch("Leanne Graham");
+Enzyme.configure({ adapter: new EnzymeAdapter() });
+
+test("renders a lists of user names", () => {
+  const wrapper = shallow(<UsersList users={[{ name: "Leanne Graham" }]} />);
+  console.log(wrapper.debug());
+  expect(wrapper).toBeTruthy();
 });

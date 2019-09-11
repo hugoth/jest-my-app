@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getUserPosts } from "../../store/actions/postsAction";
 
-const UserPage = props => {
+export function UserPage(props) {
   useEffect(() => {
     props.getPosts(props.match.params.id);
   }, []);
@@ -14,14 +14,14 @@ const UserPage = props => {
         props.posts.map(post => {
           return (
             <div key={post.id}>
-              <p>{post.title}</p>
-              <p>{post.body}</p>
+              <p id="title">{post.title}</p>
+              <p id="body">{post.body}</p>
             </div>
           );
         })}
     </div>
   );
-};
+}
 
 const mapStateToProps = state => {
   return {

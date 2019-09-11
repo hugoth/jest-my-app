@@ -9,16 +9,21 @@ export function UsersList({ getUsers, users }) {
   useEffect(() => {
     getUsers();
   }, []);
-
+  console.log(users, "props userlists");
   const renderList = users => {
-    return users.map(user => (
-      <Link to={`user/${user.name}/${user.id}`}>
-        <li key={user.id}>{user.name}</li>
-      </Link>
-    ));
+    return (
+      <ul>
+        {users.map(user => (
+          <Link to={`user/${user.name}/${user.id}`} key={user.id}>
+            {/* add key on link too because it's allow react to rerender more efficiancy */}
+            <li>{user.name}</li>
+          </Link>
+        ))}
+      </ul>
+    );
   };
 
-  return <ul>{renderList(users)}</ul>;
+  return renderList(users);
 }
 
 const mapStateToProps = state => {
